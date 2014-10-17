@@ -1,0 +1,14 @@
+KERN_DIR = /home/liu/ti-sdk-am335x-evm-07.00.00.00/board-support/linux-3.12.10-ti2013.12.01
+
+INCLUDES = -I/home/liu/ti-sdk-am335x-evm-07.00.00.00/nfs/own/modules/ev3onbbb/lms2012/lms2012/source
+
+all:
+	make -C $(KERN_DIR) M=$(PWD) modules ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+
+clean:
+	make -C $(KERN_DIR) M=$(PWD) clean
+
+app:
+	arm-linux-gnueabihf-gcc -o app app.c
+
+obj-m	+= d_pwm.o
